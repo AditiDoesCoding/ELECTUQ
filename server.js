@@ -1,15 +1,13 @@
-const path = require('path');
-const dotenv = require('dotenv');
-const result = dotenv.config({ path: path.resolve(__dirname, '.env') });
+import path from 'path';
+import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
+import express from 'express';
+import cors from 'cors';
+import axios from 'axios';
+import { rateLimit } from 'express-rate-limit';
 
-if (result.error) {
-  console.warn("DevOps: .env file not found or could not be loaded. Checking system environment variables...");
-}
-
-const express = require('express');
-const cors = require('cors');
-const axios = require('axios');
-const rateLimit = require('express-rate-limit');
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 // Safe Debug Log
 const keyExists = !!process.env.GEMINI_API_KEY;

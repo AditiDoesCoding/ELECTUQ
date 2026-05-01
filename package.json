@@ -2,6 +2,7 @@
   "name": "electuq",
   "version": "1.0.0",
   "description": "ElectUQ - India's AI Election Assistant",
+  "type": "module",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
