@@ -23,6 +23,11 @@ app.use(cors());
 app.use(express.json({ limit: '100kb' })); // Security: Limit payload size
 app.use(express.static(path.join(__dirname)));
 
+// Root route to serve index.html for Vercel deployment
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 // Rate limiting: 100 requests per IP per minute
 const chatLimiter = rateLimit({
   windowMs: 1 * 60 * 1000,
