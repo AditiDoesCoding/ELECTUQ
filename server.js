@@ -19,16 +19,21 @@ console.log(`[BOOT] Environment: ${keyExists ? 'Key Found' : 'KEY MISSING'} | St
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Essential for Vercel deployment to handle proxy headers correctly
+app.set('trust proxy', 1);
+
 app.use(cors());
 app.use(express.json({ limit: '100kb' })); // Security: Limit payload size
-app.use(express.static(path.join(__dirname)));
-app.use('/styles', express.static(path.join(__dirname, 'styles')));
-app.use('/js', express.static(path.join(__dirname, 'js')));
 
-// Root route to serve index.html for Vercel deployment
+// Root route - serve index.html first
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
+
+// Static assets
+app.use(express.static(path.join(__dirname)));
+app.use('/styles', express.static(path.join(__dirname, 'styles')));
+app.use('/js', express.static(path.join(__dirname, 'js')));
 
 // Rate limiting: 100 requests per IP per minute
 const chatLimiter = rateLimit({
