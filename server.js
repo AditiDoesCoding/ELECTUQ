@@ -5,6 +5,7 @@ import express from 'express';
 import cors from 'cors';
 import axios from 'axios';
 import { rateLimit } from 'express-rate-limit';
+import helmet from 'helmet';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: path.resolve(__dirname, '.env') });
@@ -15,6 +16,7 @@ const isPlaceholder = process.env.GEMINI_API_KEY === 'your_api_key_here';
 console.log(`[BOOT] Environment: ${keyExists ? 'Key Found' : 'KEY MISSING'} | Status: ${isPlaceholder ? 'PLACEHOLDER DETECTED' : 'READY'}`);
 
 const app = express();
+app.use(helmet());
 const PORT = process.env.PORT || 3000;
 
 // Essential for Vercel deployment to handle proxy headers correctly

@@ -105,6 +105,36 @@ function init() {
     setTimeout(() => {
         toggleGuide(true);
     }, 5000);
+
+    // 6. Fact Rotation
+    initFactRotation();
+}
+
+
+// === Header Fact Rotation ===
+
+const facts = [
+    "🎂 ECI established: January 25, 1950",
+    "🇮🇳 First general election: 1951-52",
+    "📮 EVMs first used in 1982 (Kerala)",
+    "🤳 VVPAT first used in 2013 (Nagaland)",
+    "🗳️ NOTA option introduced in 2013",
+    "👥 Over 960 million registered voters",
+    "🌍 Largest democratic election in the world"
+];
+
+function initFactRotation() {
+    const el = document.getElementById('header-fact-display');
+    if (!el) return;
+    let index = 0;
+    setInterval(() => {
+        el.classList.add('fade-out');
+        setTimeout(() => {
+            index = (index + 1) % facts.length;
+            el.textContent = facts[index];
+            el.classList.remove('fade-out');
+        }, 500); // Matches the CSS transition duration
+    }, 6000); // Rotate every 6 seconds
 }
 
 
