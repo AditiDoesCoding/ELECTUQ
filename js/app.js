@@ -292,9 +292,16 @@ window.showTab = showTab;
 
 // === Boot Trigger ===
 
-if (typeof process !== 'undefined' && process.env.NODE_ENV === 'test') {
-    // Skip auto-boot in test environment
-} else if (document.readyState === 'loading') {
+// Global safety: If any script fails, try to hide the loader so the app isn't stuck
+window.addEventListener('error', () => {
+    const loader = document.getElementById('app-loading');
+    if (loader) {
+        loader.style.opacity = '0';
+        setTimeout(() => { loader.style.display = 'none'; }, 500);
+    }
+});
+
+if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', bootApp);
 } else {
     bootApp();
