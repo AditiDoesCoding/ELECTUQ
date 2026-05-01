@@ -16,14 +16,13 @@ const isPlaceholder = process.env.GEMINI_API_KEY === 'your_api_key_here';
 console.log(`[BOOT] Environment: ${keyExists ? 'Key Found' : 'KEY MISSING'} | Status: ${isPlaceholder ? 'PLACEHOLDER DETECTED' : 'READY'}`);
 
 const app = express();
+app.set('trust proxy', 1);
 app.use(helmet({
   contentSecurityPolicy: false,
-  crossOriginEmbedderPolicy: false
+  crossOriginEmbedderPolicy: false,
+  crossOriginResourcePolicy: { policy: "cross-origin" }
 }));
 const PORT = process.env.PORT || 3000;
-
-// Essential for Vercel deployment to handle proxy headers correctly
-app.set('trust proxy', 1);
 
 app.use(cors());
 app.use(express.json({ limit: '100kb' })); // Security: Limit payload size
