@@ -16,7 +16,10 @@ const isPlaceholder = process.env.GEMINI_API_KEY === 'your_api_key_here';
 console.log(`[BOOT] Environment: ${keyExists ? 'Key Found' : 'KEY MISSING'} | Status: ${isPlaceholder ? 'PLACEHOLDER DETECTED' : 'READY'}`);
 
 const app = express();
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: false,
+  crossOriginEmbedderPolicy: false
+}));
 const PORT = process.env.PORT || 3000;
 
 // Essential for Vercel deployment to handle proxy headers correctly
