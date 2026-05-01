@@ -194,7 +194,7 @@ RULES:
   }
 });
 
-if (require.main === module) {
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
   app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
   });
