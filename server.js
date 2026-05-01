@@ -22,6 +22,8 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json({ limit: '100kb' })); // Security: Limit payload size
 app.use(express.static(path.join(__dirname)));
+app.use('/styles', express.static(path.join(__dirname, 'styles')));
+app.use('/js', express.static(path.join(__dirname, 'js')));
 
 // Root route to serve index.html for Vercel deployment
 app.get('/', (req, res) => {
