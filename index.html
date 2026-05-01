@@ -10,6 +10,9 @@
     <title>ElectUQ | India's Most Engaging AI Civic Platform 2026</title>
     <meta name="description" content="Master India's 2026 Elections in 5 minutes with ElectUQ - AI-powered, gamified, and interactive.">
 
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🗳️</text></svg>">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -285,9 +288,15 @@
         <!-- ==================== CHAT TAB ==================== -->
         <section id="panel-chat" class="tab-panel">
             <div class="container">
-                <div class="section-header">
-                    <h2>ElectUQ AI Assistant</h2>
-                    <p>Your personal guide to the 2026 elections.</p>
+                <div class="section-header" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;">
+                    <div>
+                        <h2>ElectUQ AI Assistant</h2>
+                        <p>Your personal guide to the 2026 elections.</p>
+                    </div>
+                    <div id="ai-status-indicator" style="display: flex; align-items: center; gap: 10px; background: var(--bg); padding: 8px 16px; border-radius: 20px; border: 1px solid var(--border); font-size: 0.8rem; font-weight: 800; color: var(--muted);">
+                        <span class="ai-status-dot live" id="status-dot"></span>
+                        <span id="status-text">AI LIVE</span>
+                    </div>
                 </div>
                 <div class="chat-window">
                     <div class="chat-messages" id="chat-stream" aria-live="polite" aria-atomic="false">

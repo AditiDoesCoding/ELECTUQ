@@ -100,7 +100,14 @@ RULES:
 - Factually accurate regarding Election Commission of India (ECI) procedures.
 - Strictly neutral (no political bias).`;
 
-    const modelsToTry = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-flash-latest", "gemini-pro-latest"]; // Updated for 2026 Environment
+    const modelsToTry = [
+      "gemini-2.5-flash", 
+      "gemini-2.0-flash", 
+      "gemini-1.5-flash", 
+      "gemini-1.5-pro",
+      "gemini-flash-latest", 
+      "gemini-pro-latest"
+    ]; 
     let lastError = null;
 
     const requestPayload = {

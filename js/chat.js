@@ -14,6 +14,25 @@ export function initChat() {
         renderBotMessage("Namaste! I am **Q Dost**, your AI companion for the 2026 Elections. 🇮🇳\n\nI can help you with registration, polling booth locations, or understanding EVMs. What's on your mind?");
         addSuggestionChips(['How to register?', 'Is EVM safe?', 'Who is eligible?', 'Am I ready to vote?']);
     }
+    updateStatusIndicator('live');
+}
+
+function updateStatusIndicator(state) {
+    const dot = document.getElementById('status-dot');
+    const text = document.getElementById('status-text');
+    if (!dot || !text) return;
+
+    if (state === 'live') {
+        dot.className = 'ai-status-dot live';
+        text.textContent = 'AI LIVE';
+    } else if (state === 'offline') {
+        dot.className = 'ai-status-dot mock';
+        text.textContent = 'OFFLINE MODE';
+    } else if (state === 'error') {
+        dot.className = 'ai-status-dot';
+        dot.style.background = '#ef4444';
+        text.textContent = 'CONFIG ERROR';
+    }
 }
 
 function addSuggestionChips(questions) {
@@ -222,9 +241,17 @@ export async function handleChatSend() {
                 const errJson = await response.json();
                 apiErr = errJson.error || apiErr;
             } catch(e) {}
-            showChatError(apiErr);
+            
+            if (response.status === 500) {
+                updateStatusIndicator('error');
+                showChatError("Server Configuration Error: " + apiErr);
+            } else {
+                showChatError(apiErr);
+            }
             return;
         }
+
+        updateStatusIndicator('live');
 
         let data;
         try {
@@ -272,6 +299,7 @@ export async function handleChatSend() {
 
         if (isNetworkError || isOfflineSignal) {
             // Show a non-intrusive warning that we are in offline mode
+            updateStatusIndicator('offline');
             const reason = isOfflineSignal ? "Service temporarily offline" : "Connection issue";
             showChatError(`${reason} (Switched to Offline Mode)`);
             
