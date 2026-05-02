@@ -1,28 +1,29 @@
 // === Central State Module ===
 // All localStorage interactions go through getState / setState.
 
+const safeStorage = typeof localStorage !== 'undefined' ? localStorage : { getItem: () => null, setItem: () => null };
+
 export let appState = {
-    lang: localStorage.getItem('electuq_lang') || 'en',
-    dark: localStorage.getItem('electuq_dark') === 'true',
+    lang: safeStorage.getItem('electuq_lang') || 'en',
+    dark: safeStorage.getItem('electuq_dark') === 'true',
     lastPct: 0
 };
 
-export let journeyState = JSON.parse(localStorage.getItem('electuq_journey')) || {};
+export let journeyState = JSON.parse(safeStorage.getItem('electuq_journey') || '{}');
 
-/** Read a raw string value from localStorage */
 export function getState(key) {
-    return localStorage.getItem(key);
+    return safeStorage.getItem(key);
 }
 
 /** Write a raw string value to localStorage */
 export function setState(key, value) {
-    localStorage.setItem(key, value);
+    safeStorage.setItem(key, value);
 }
 
 /** Read a JSON-parsed value from localStorage */
 export function getJSON(key, fallback = null) {
     try {
-        return JSON.parse(localStorage.getItem(key)) || fallback;
+        return JSON.parse(safeStorage.getItem(key)) || fallback;
     } catch {
         return fallback;
     }
@@ -30,5 +31,5 @@ export function getJSON(key, fallback = null) {
 
 /** Write a JSON-stringified value to localStorage */
 export function setJSON(key, value) {
-    localStorage.setItem(key, JSON.stringify(value));
+    safeStorage.setItem(key, JSON.stringify(value));
 }

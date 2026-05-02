@@ -3,6 +3,7 @@ import {
     loadMemory, saveMemory, recordInteraction, recordEligibility,
     getPlanningContext, getMemoryContext, enforceResponse
 } from './memory.js';
+import { detectTopic, validateMessage } from './utils.js';
 
 let chatHistory = [];
 let agentMemory = loadMemory();
@@ -332,14 +333,7 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
-export function detectTopic(text) {
-    const l = text.toLowerCase();
-    if (l.includes('register') || l.includes('form 6')) return 'registration';
-    if (l.includes('evm') || l.includes('vvpat')) return 'polling';
-    if (l.includes('eligible') || l.includes('age')) return 'eligibility';
-    if (l.includes('ready') || l.includes('journey')) return 'readiness';
-    return 'general';
-}
+// topic detection moved to utils.js
 
 function trackAnalytics(event, data) {
     // console.log(`[Analytics] ${event}:`, data);
@@ -402,11 +396,7 @@ export function getMockResponse(text) {
     return null;
 }
 
-export function validateMessage(text) {
-    if (!text || text.length < 2) return "Message too short (min 2 chars).";
-    if (text.length > 1000) return "Message too long (max 1000 chars).";
-    return null;
-}
+// validation moved to utils.js
 
 function showChatError(msg) {
     const stream = document.getElementById('chat-stream');

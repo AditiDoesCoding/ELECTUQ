@@ -192,20 +192,15 @@ A hidden skip navigation link at the top of `<body>` lets keyboard-only users by
 **Keyboard Navigation**  
 Every interactive element is accessible via `Tab`, `Enter`, and `Space` — no mouse required.
 
----
-
 ## 🧪 9. Testing
 
-Three critical smoke tests cover the backend's most important paths using Jest and Supertest:
+The platform is backed by a comprehensive test suite covering both backend API integrity and frontend business logic:
 
-**Test 1 — Frontend Delivery**  
-`GET /` confirms the application is served correctly with status 200 and HTML content.
+**1. Frontend Logic & Intelligence (`js/logic.test.js`)**  
+Validates AI intent detection, input sanitization patterns, and async state management.
 
-**Test 2 — Input Validation**  
-`POST /api/chat` with an empty body confirms the validation layer correctly rejects malformed requests with a structured 400 error.
-
-**Test 3 — AI Pipeline Integration**  
-`POST /api/chat` with a valid payload confirms the full Gemini racing pipeline activates and returns a structured JSON response.
+**2. Backend API Integrity (`server.test.js`)**  
+Covers frontend delivery, input validation, payload size limits, and full Gemini pipeline integration.
 
 Manual QA was performed across all 8 journey steps for localStorage persistence, correct state progression, language toggle behaviour, and offline fallback activation under simulated network failure.
 

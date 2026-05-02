@@ -1,5 +1,6 @@
 import request from 'supertest';
 import app from './server.js';
+import { detectTopic, validateMessage, sanitizePattern } from './js/utils.js';
 
 describe('ElectUQ Backend Smoke Tests', () => {
   
@@ -36,6 +37,45 @@ describe('ElectUQ Backend Smoke Tests', () => {
     } else {
       expect([200, 500, 503]).toContain(res.statusCode);
     }
+  });
+
+  // Test 4: Security - Payload size limit
+  test('POST /api/chat with oversized payload should be rejected', async () => {
+    const largeMessage = 'a'.repeat(2001); 
+    const res = await request(app)
+      .post('/api/chat')
+      .send({ message: largeMessage, history: [] });
+    expect(res.statusCode).toBe(400);
+  });
+
+  // Test 5: Method Not Allowed
+  test('GET /api/chat should return 405', async () => {
+    const res = await request(app).get('/api/chat');
+    expect(res.statusCode).toBe(405);
+  });
+
+  // Test 6: AI Intent Detection
+  describe('AI Intelligence (Intent Detection)', () => {
+    test('should detect core intents correctly', () => {
+      expect(detectTopic('How to register?')).toBe('registration');
+      expect(detectTopic('is evm safe?')).toBe('polling');
+      expect(detectTopic('am I eligible?')).toBe('eligibility');
+    });
+  });
+
+  // Test 7: Input Validation
+  describe('Input Security (Validation)', () => {
+    test('should validate message length', () => {
+      expect(validateMessage('a')).toBe('Message too short (min 2 chars).');
+      expect(validateMessage('How do I vote?')).toBeNull();
+    });
+  });
+
+  // Test 8: Sanitization Patterns
+  describe('Security (Sanitization)', () => {
+    test('should strip dangerous tags', () => {
+      expect(sanitizePattern('<script>alert(1)</script>')).toBe('alert(1)');
+    });
   });
 
 });

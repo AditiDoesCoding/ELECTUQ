@@ -61,7 +61,7 @@ const sanitizeInput = (text) => {
     .slice(0, 1000);                            // hard cap (defense-in-depth with backend 100kb limit)
 };
 
-app.post('/api/chat', chatLimiter, async (req, res) => {
+app.route('/api/chat').post(chatLimiter, async (req, res) => {
   try {
     const { message, history, ...unexpected } = req.body;
     const rawKey = process.env.GEMINI_API_KEY;
@@ -207,7 +207,7 @@ RULES:
     console.error("Unexpected Server Error:", err.message);
     res.status(500).json({ error: "Internal server error occurred." });
   }
-});
+}).all((req, res) => res.status(405).json({ error: "Method not allowed" }));
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   app.listen(PORT, () => {
