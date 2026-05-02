@@ -10,8 +10,8 @@ let agentMemory = loadMemory();
 export function initChat() {
     chatHistory = [];
     const stream = document.getElementById('chat-stream');
-    if (stream && stream.children.length <= 1) {
-        renderBotMessage("Namaste! I am **Q Dost**, your AI companion for the 2026 Elections. 🇮🇳\n\nI can help you with registration, polling booth locations, or understanding EVMs. What's on your mind?");
+    if (stream && stream.children.length === 0) {
+        renderBotMessage("Namaste! I am Q Dost, your AI companion for the 2026 Lok Sabha Elections. 🗳️\n\nAsk me anything — registration, polling booths, EVM security, eligibility, or just 'Kyu should I vote?' — I'm here to guide you every step of the way. \nSamajho. Jano. Vote Karo. 🇮🇳");
         addSuggestionChips(['How to register?', 'Is EVM safe?', 'Who is eligible?', 'Am I ready to vote?']);
     }
     updateStatusIndicator('live');
