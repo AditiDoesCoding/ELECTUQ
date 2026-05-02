@@ -42,7 +42,7 @@ export const electionData = {
 export const myths = [
     { cat: "EVM Security", m: "EVMs can be hacked via Bluetooth.", f: "EVMs are standalone calculators with no wireless chips or internet connectivity." },
     { cat: "Vote Secrecy", m: "The govt knows who I voted for.", f: "Voting is strictly anonymous. EVMs do not record voter identity." },
-    { cat: "Valid ID", m: "I can only vote if I have a Voter ID card.", f: "You can vote using Aadhaar, Passport, PAN card, or 11 other approved IDs." },
+    { cat: "Valid ID", m: "I can only vote if I have a Voter ID card.", f: "You can vote using Aadhaar, Passport, PAN card, or 9 other approved documents (12 total alternatives)." },
     { cat: "NOTA", m: "If NOTA gets max votes, elections are canceled.", f: "NOTA does not cancel elections. The candidate with the next highest votes wins." },
     { cat: "Ink Removal", m: "Indelible ink can be washed off with chemicals.", f: "The ink contains Silver Nitrate which reacts with skin protein and cannot be removed for weeks." },
     { cat: "Double Voting", m: "One person can vote multiple times.", f: "Biometric checks and indelible ink prevent anyone from voting twice." },
