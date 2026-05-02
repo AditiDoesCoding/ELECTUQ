@@ -24,6 +24,84 @@
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/components.css">
     <link rel="stylesheet" href="styles/dark-mode.css">
+    <style>
+        @media (max-width: 768px) {
+            html, body {
+                overflow-x: hidden;
+                width: 100%;
+            }
+            .container {
+                padding-left: 16px;
+                padding-right: 16px;
+                box-sizing: border-box;
+            }
+            h1, h2, h3, p, div, span, a, button {
+                word-break: normal;
+                overflow-wrap: break-word;
+            }
+            h1 { font-size: 2.2rem !important; }
+            h2 { font-size: 1.8rem !important; }
+            h3 { font-size: 1.4rem !important; }
+            .card, .discovery-card, .stat-card, .booth-card, .finder-card, .score-card-wide {
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .stats-strip .container, .score-card-wide, .finder-split-layout {
+                display: flex !important;
+                flex-direction: column !important;
+            }
+            .score-card-wide {
+                padding: 20px !important;
+                text-align: center;
+                gap: 15px !important;
+            }
+            .hero-btns {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+            .hero-btns .btn {
+                width: 100%;
+            }
+            div[style*="min-width: 300px"], div[style*="min-width: 180px"] {
+                min-width: 0 !important;
+                width: 100% !important;
+            }
+            #evm-modal > div, #wiz-modal > div, .info-modal {
+                width: 95vw !important;
+                max-width: 95vw !important;
+                margin: 10px auto !important;
+                padding: 20px !important;
+                box-sizing: border-box;
+            }
+            #evm-modal, #wiz-modal {
+                align-items: flex-start !important;
+                padding-top: 20px !important;
+                overflow-y: auto !important;
+            }
+            #main-tab-bar {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 8px;
+            }
+            .tab-btn {
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+            .app-header .header-content {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .header-fact {
+                display: none !important;
+            }
+            .booth-sim-container {
+                padding: 16px !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
