@@ -14,7 +14,7 @@ import { handleAction, showTab } from './actions.js';
 // === Boot ===
 
 function bootApp() {
-    console.log("ElectUQ: Booting application...");
+    // console.log("ElectUQ: Booting application...");
     document.addEventListener('click', handleAction);
     document.addEventListener('keydown', (e) => {
         if ((e.key === 'Enter' || e.key === ' ') && e.target.getAttribute('role') === 'button') {
@@ -36,7 +36,7 @@ function bootApp() {
 
     try {
         init();
-        console.log("ElectUQ: Initialization successful.");
+        // console.log("ElectUQ: Initialization successful.");
     } catch (error) {
         console.error("ElectUQ: Initialization failed:", error);
     } finally {

@@ -342,7 +342,7 @@ export function detectTopic(text) {
 }
 
 function trackAnalytics(event, data) {
-    console.log(`[Analytics] ${event}:`, data);
+    // console.log(`[Analytics] ${event}:`, data);
 }
 
 export function getMockResponse(text) {

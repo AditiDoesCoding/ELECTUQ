@@ -13,7 +13,7 @@ dotenv.config({ path: path.resolve(__dirname, '.env') });
 // Safe Debug Log
 const keyExists = !!process.env.GEMINI_API_KEY;
 const isPlaceholder = process.env.GEMINI_API_KEY === 'your_api_key_here';
-console.log(`[BOOT] Environment: ${keyExists ? 'Key Found' : 'KEY MISSING'} | Status: ${isPlaceholder ? 'PLACEHOLDER DETECTED' : 'READY'}`);
+// console.log(`[BOOT] Environment: ${keyExists ? 'Key Found' : 'KEY MISSING'} | Status: ${isPlaceholder ? 'PLACEHOLDER DETECTED' : 'READY'}`);
 
 const app = express();
 app.set('trust proxy', 1);
@@ -180,7 +180,7 @@ RULES:
         throw new Error("AI produced unsafe or malformed output."); // Triggers fallback
       }
 
-      console.log(`[AI] Response generated successfully via Gemini.`);
+      // console.log(`[AI] Response generated successfully via Gemini.`);
       return res.json(successfulResponse);
     } catch (aggregateError) {
       const error = aggregateError.errors ? aggregateError.errors[0] : aggregateError;
@@ -207,7 +207,7 @@ RULES:
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+    // console.log(`Server running at http://localhost:${PORT}`);
   });
 }
 
