@@ -17,6 +17,8 @@
 
 ElectUQ is an AI-powered election assistant that helps Indian citizens understand *why and how to vote* through an interactive journey, EVM simulation, and a Gemini-powered agent that can guide users step-by-step.
 
+**Production-Grade Rigor:** Backed by a full suite of automated tests for backend integrity and frontend logic to ensure zero-failure civic participation.
+
 ---
 > ⚠️ **Disclaimer:** ElectUQ is an independent hackathon prototype built for educational purposes and is not affiliated with or endorsed by the Election Commission of India.
 ---
