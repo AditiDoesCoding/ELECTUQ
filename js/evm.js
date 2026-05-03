@@ -47,9 +47,9 @@ export function openEVM() {
     if (!modal || !content) return;
 
     const candidates = [
-        { name: "Candidate 1", symbol: "🐅 Tiger" },
-        { name: "Candidate 2", symbol: "✨🐘😊 Elephant" },
-        { name: "Candidate 3", symbol: "🚲 Bicycle" },
+        { name: "Candidate 1", symbol: "✨ Sparkle" },
+        { name: "Candidate 2", symbol: "🐘 Elephant" },
+        { name: "Candidate 3", symbol: "🍃 Leaf" },
         { name: "None of the Above (NOTA)", symbol: "❌ NOTA" }
     ];
 
