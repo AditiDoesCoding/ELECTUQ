@@ -48,7 +48,7 @@ export function openEVM() {
 
     const candidates = [
         { name: "Candidate 1", symbol: "🐅 Tiger" },
-        { name: "Candidate 2", symbol: "🐘 Elephant" },
+        { name: "Candidate 2", symbol: "✨🐘😊 Elephant" },
         { name: "Candidate 3", symbol: "🚲 Bicycle" },
         { name: "None of the Above (NOTA)", symbol: "❌ NOTA" }
     ];
