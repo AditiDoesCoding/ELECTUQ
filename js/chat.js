@@ -150,6 +150,10 @@ RULES:
 - Always end with a follow-up question.`;
 }
 
+/**
+ * Gathers the current application state to provide personalized context to the AI.
+ * @returns {Object} An object containing user state, journey progress, eligibility, and language.
+ */
 export function getChatContext() {
     const userState = document.getElementById('state-select')?.value || "";
     const lang = localStorage.getItem('electuq_lang') || 'en';
@@ -175,6 +179,10 @@ export function getChatContext() {
     };
 }
 
+/**
+ * Orchestrates the sending of a chat message, including UI updates, 
+ * context gathering, and backend communication.
+ */
 export async function handleChatSend() {
     const input = document.getElementById('chat-input');
     const text = input.value.trim();

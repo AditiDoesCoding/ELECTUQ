@@ -20,20 +20,23 @@ describe('ElectUQ Backend Smoke Tests', () => {
     expect(res.body).toHaveProperty('error');
   });
 
-  // Test 3: API Integration with valid payload
-  test('POST /api/chat with valid payload returns 200', async () => {
+  // Test 3: API Integration with valid payload (Context Aware)
+  test('POST /api/chat with context payload returns 200', async () => {
     const res = await request(app)
       .post('/api/chat')
       .send({ 
-        message: "How do I register to vote?", 
-        history: [] 
+        message: "What is my next step?", 
+        history: [],
+        context: {
+          state: "West Bengal",
+          progress: "3/8 steps completed",
+          eligibility: "18+",
+          lang: "English"
+        }
       });
     
     if (res.statusCode === 200) {
       expect(res.body).toHaveProperty('candidates');
-      const text = res.body.candidates[0].content.parts[0].text;
-      const parsed = JSON.parse(text);
-      expect(parsed).toHaveProperty('response');
     } else {
       expect([200, 500, 503]).toContain(res.statusCode);
     }

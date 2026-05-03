@@ -309,6 +309,15 @@ function lookupPin() {
             <div class="r-label">Assigned Polling Station</div>
             <div class="r-val" style="color: var(--navy);">${stationName}</div>
         </div>
+        <div style="margin-top:20px; display: flex; gap: 10px;">
+            <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(stationName)}" 
+               target="_blank" class="btn btn-primary" style="font-size: 0.8rem; padding: 8px 12px; text-decoration: none;">
+               📍 View on Google Maps
+            </a>
+            <div style="font-size:0.75rem; color:var(--muted); align-self: center;">
+                Powered by Google Maps Platform
+            </div>
+        </div>
         <div style="margin-top:15px; font-size:0.8rem; color:var(--green); font-weight: bold;">
             ✓ Real-time mapping simulated for PIN ${pin}.
         </div>
