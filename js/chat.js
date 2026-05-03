@@ -150,6 +150,31 @@ RULES:
 - Always end with a follow-up question.`;
 }
 
+export function getChatContext() {
+    const userState = document.getElementById('state-select')?.value || "";
+    const lang = localStorage.getItem('electuq_lang') || 'en';
+    
+    let journeyStatus = "Not started";
+    try {
+        const js = JSON.parse(localStorage.getItem('electuq_journey')) || {};
+        const count = Object.values(js).filter(Boolean).length;
+        journeyStatus = `${count}/8 steps completed`;
+    } catch(e){}
+
+    let eligibility = "Not checked";
+    try {
+        const wiz = JSON.parse(localStorage.getItem('electuq_wiz')) || {};
+        if (wiz[1]) eligibility = wiz[1] === 'over18' ? "18+" : "Under 18";
+    } catch(e){}
+
+    return {
+        state: userState,
+        progress: journeyStatus,
+        eligibility: eligibility,
+        lang: lang === 'hi' ? 'Hindi' : 'English'
+    };
+}
+
 export async function handleChatSend() {
     const input = document.getElementById('chat-input');
     const text = input.value.trim();
@@ -206,7 +231,8 @@ export async function handleChatSend() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     message: text,
-                    history: chatHistory
+                    history: chatHistory,
+                    context: getChatContext()
                 })
             });
         } catch (fetchErr) {

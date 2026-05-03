@@ -63,13 +63,13 @@ const sanitizeInput = (text) => {
 
 app.route('/api/chat').post(chatLimiter, async (req, res) => {
   try {
-    const { message, history, ...unexpected } = req.body;
+    const { message, history, context, ...unexpected } = req.body;
     const rawKey = process.env.GEMINI_API_KEY;
     const API_KEY = rawKey ? rawKey.replace(/^["'](.+)["']$/, '$1') : null;
 
     // Security & Validation
     if (Object.keys(unexpected).length > 0) {
-      return res.status(400).json({ error: "Unexpected fields in request body. Only message and history are allowed." });
+      return res.status(400).json({ error: "Unexpected fields in request body. Only message, history, and context are allowed." });
     }
 
     if (!API_KEY || API_KEY === 'your_api_key_here') {
@@ -87,9 +87,23 @@ app.route('/api/chat').post(chatLimiter, async (req, res) => {
 
     const sanitizedMessage = sanitizeInput(message);
     
+    // Build personalized user context block
+    let userContextBlock = "";
+    if (context) {
+      userContextBlock = `
+USER REAL-TIME CONTEXT:
+- Selected State: ${context.state || "None"}
+- Journey Progress: ${context.progress || "0/8"}
+- Eligibility Status: ${context.eligibility || "Unknown"}
+- Language Preference: ${context.lang || "English"}
+`;
+    }
+
     const internalSystemInstruction = `You are Q Dost — India's most trusted AI voting companion for the 2026 Lok Sabha Elections, built into the ElectUQ platform.
 
 You are NOT a passive FAQ bot. You are a proactive civic agent whose mission is to turn every user into a confident, informed voter.
+
+${userContextBlock}
 
 YOUR PERSONALITY:
 - Warm, encouraging, and celebratory — like a knowledgeable elder sibling who genuinely cares.
