@@ -102,3 +102,11 @@ h1, h2, h3, h4, .fraunces {
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+}
