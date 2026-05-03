@@ -694,7 +694,7 @@
             const hint = document.getElementById('scroll-down-hint');
             if (!hint) return;
             const handleScroll = () => {
-                if (window.scrollY > 50) {
+                if (window.scrollY > 300) {
                     hint.style.opacity = '0';
                     hint.style.transform = 'translateY(20px) scale(0.9)';
                     window.removeEventListener('scroll', handleScroll);
