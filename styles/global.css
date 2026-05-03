@@ -110,3 +110,24 @@ h1, h2, h3, h4, .fraunces {
   overflow: hidden;
   clip: rect(0,0,0,0);
 }
+
+/* === Smooth Tab Transitions === */
+.tab-panel {
+    display: none;
+    animation: tabFadeIn 0.35s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+@keyframes tabFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

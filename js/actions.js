@@ -21,7 +21,6 @@ let visitedTabs = new Set(['home']);
 export function showTab(tabName) {
     setState('electuq_active_tab', tabName);
     document.querySelectorAll('.tab-panel').forEach(tab => {
-        tab.style.display = 'none';
         tab.classList.remove('active');
     });
 
@@ -31,7 +30,6 @@ export function showTab(tabName) {
 
     const selected = document.getElementById('panel-' + tabName);
     if (selected) {
-        selected.style.display = 'block';
         selected.classList.add('active');
     }
 
